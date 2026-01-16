@@ -26,4 +26,10 @@ public class Order extends BaseEntity{
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
+
+    public enum PaymentStatus{
+        UNPAID,
+        PAID,
+        FAILED
+    }
 }
