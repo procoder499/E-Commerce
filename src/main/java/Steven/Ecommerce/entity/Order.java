@@ -1,7 +1,6 @@
 package Steven.Ecommerce.entity;
 
 
-import ch.qos.logback.core.status.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +21,7 @@ public class Order extends BaseEntity{
     private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private PaymentStatus status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;

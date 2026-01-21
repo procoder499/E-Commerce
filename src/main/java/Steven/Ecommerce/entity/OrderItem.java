@@ -24,7 +24,7 @@ public class OrderItem extends BaseEntity {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private Integer quatity;
+    private Integer quantity;
 
     private BigDecimal price;
 }
