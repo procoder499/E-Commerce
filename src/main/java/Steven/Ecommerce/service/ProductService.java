@@ -14,36 +14,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequiredArgsConstructor
-public class ProductService {
+//@Service
+//@RequiredArgsConstructor
+public interface ProductService {
 
+    List<ProductResponse> getAll();
 
-    private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
+    ProductResponse getById(Long id);
 
+    ProductResponse create(ProductRequest request);
 
-    public ProductResponse create(ProductRequest request) {
-        Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+    ProductResponse update(Long id, ProductRequest request);
 
-
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setDescription(request.getDescription());
-        product.setPrice(request.getPrice());
-        product.setStock(request.getStock());
-        product.setCategory(category);
-
-
-        return ProductMapper.toResponse(productRepository.save(product));
-    }
-
-
-    public List<ProductResponse> getAll() {
-        return productRepository.findByActiveTrue()
-                .stream()
-                .map(ProductMapper::toResponse)
-                .collect(Collectors.toList());
-    }
+    void delete(Long id);
 }

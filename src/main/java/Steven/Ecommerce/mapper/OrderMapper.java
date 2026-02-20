@@ -4,14 +4,15 @@ import Steven.Ecommerce.dto.order.OrderItemResponse;
 import Steven.Ecommerce.dto.order.OrderResponse;
 import Steven.Ecommerce.entity.Order;
 import Steven.Ecommerce.entity.OrderItem;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class OrderMapper {
 
 
-    public static OrderResponse toResponse(Order order) {
+    public  OrderResponse toResponse(Order order) {
         if (order == null) return null;
 
 
