@@ -12,10 +12,10 @@ public interface OrderService {
 
     OrderResponse getOrderById(Long id);
 
-    OrderResponse createOrder(Long userId, OrderRequest request);
+    OrderResponse createOrder(String email, OrderRequest request);
 
     void updateStatus(Long orderId, OrderStatus status);
 
-    List<OrderResponse> getOrdersByUser(Long userId);
+    List<OrderResponse> getOrdersByUser(String email);
 }
 

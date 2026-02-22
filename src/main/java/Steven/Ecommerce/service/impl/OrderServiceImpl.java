@@ -41,8 +41,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse createOrder(Long userId, OrderRequest request) {
-        User user = userRepository.findById(userId)
+    public OrderResponse createOrder(String email, OrderRequest request) {
+
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Order order = new Order();
@@ -50,7 +51,6 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.PENDING);
         order.setPaymentStatus(PaymentStatus.UNPAID);
 
-        // xử lý items, total...
         Order savedOrder = orderRepository.save(order);
         return orderMapper.toResponse(savedOrder);
     }
@@ -64,8 +64,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponse> getOrdersByUser(Long userId) {
-        return orderRepository.findByUserId(userId)
+    public List<OrderResponse> getOrdersByUser(String email) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return orderRepository.findByUserId(user.getId())
                 .stream()
                 .map(orderMapper::toResponse)
                 .toList();
