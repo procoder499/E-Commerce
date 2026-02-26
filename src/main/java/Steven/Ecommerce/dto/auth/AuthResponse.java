@@ -1,6 +1,10 @@
 package Steven.Ecommerce.dto.auth;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class AuthResponse {
     private String token;
-    private Steven.Ecommerce.dto.user.UserResponse user;
 }

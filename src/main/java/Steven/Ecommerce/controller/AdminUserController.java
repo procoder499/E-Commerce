@@ -1,6 +1,7 @@
 package Steven.Ecommerce.controller;
 
 import Steven.Ecommerce.dto.user.UserResponse;
+import Steven.Ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

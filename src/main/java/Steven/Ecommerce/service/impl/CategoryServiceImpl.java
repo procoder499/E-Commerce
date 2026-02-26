@@ -9,6 +9,8 @@ import Steven.Ecommerce.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
@@ -44,5 +46,12 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new RuntimeException("Category not found"));
 
         categoryRepository.delete(category);
+    }
+    @Override
+    public List<CategoryResponse> getAll() {
+        return categoryRepository.findAll()
+                .stream()
+                .map(categoryMapper::toResponse)
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package Steven.Ecommerce.controller;
 
+import Steven.Ecommerce.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/payments")
 @RequiredArgsConstructor
 public class PaymentController {
-    private final PaymentService paymenetService;
+    private final PaymentService paymentService;
 
     @PostMapping("/{orderId}")
     public void pay(@PathVariable Long orderId){
